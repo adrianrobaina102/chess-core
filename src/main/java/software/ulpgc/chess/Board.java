@@ -52,4 +52,43 @@ public class Board {
                 Map.entry(at("h8"), BlackRook)
         );
     }
+    public Board move(Square from, Square to){
+        return null;
+    }
+    Piece pieceAt(File file, Rank rank) {
+        return pieceAt(new Square(file, rank));
+    }
+
+    Piece pieceAt(String square) {
+        return pieceAt(at(square));
+    }
+
+    private Piece pieceAt(Square square) {
+        return pieces.get(square);
+    }
+
+    public Map<Square, Piece> pieces() {
+        return pieces;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == this) return true;
+        if (obj == null || obj.getClass() != this.getClass()) return false;
+        var that = (Board) obj;
+        return Objects.equals(this.pieces, that.pieces);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(pieces);
+    }
+
+    @Override
+    public String toString() {
+        return "Board[" +
+                "pieces=" + pieces + ']';
+    }
+
+
 }
