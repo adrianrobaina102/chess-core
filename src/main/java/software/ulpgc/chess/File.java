@@ -9,4 +9,12 @@ public enum File {
     public char symbol() {
         return this.symbol;
     }
+    public static File getFile(char symbol) {
+        for (File f : File.values()) {
+            if (f.symbol == symbol) {
+                return f;
+            }
+        }
+        return null;
+    }
 }

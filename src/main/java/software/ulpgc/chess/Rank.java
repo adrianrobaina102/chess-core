@@ -7,4 +7,12 @@ public enum Rank {
         this.value = value;
     }
     public int value() {return this.value;}
+    public static Rank getRank(int rankValue) {
+        for (Rank rank : Rank.values()) {
+            if (rank.value == rankValue) {
+                return rank;
+            }
+        }
+        return null;
+    }
 }
