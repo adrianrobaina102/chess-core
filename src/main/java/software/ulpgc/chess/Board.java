@@ -1,4 +1,5 @@
 package software.ulpgc.chess;
+import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
 import static software.ulpgc.chess.Square.*;
@@ -53,7 +54,10 @@ public final class Board {
         );
     }
     public Board move(Square from, Square to){
-        return null;
+        if (!pieces.containsKey(from)){return this;}
+        Map<Square, Piece> newMap = new HashMap<>(this.pieces);
+        newMap.put(to, newMap.remove(from));
+        return new Board(newMap);
     }
     Piece pieceAt(File file, Rank rank) {
         return pieceAt(new Square(file, rank));

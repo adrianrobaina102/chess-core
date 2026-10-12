@@ -7,17 +7,18 @@ public class Main {
     {
         Board board = Board.initial();
 
-        System.out.println("--- PRUEBA DE CASILLAS ---");
-        System.out.println("a1 (Torre Blanca): " + board.pieceAt("a1"));
-        System.out.println("e1 (Rey Blanco): " + board.pieceAt("e1"));
-        System.out.println("a8 (Torre Negra): " + board.pieceAt("a8"));
-        System.out.println("e8 (Rey Negro): " + board.pieceAt("e8"));
-        System.out.println("e4 (Vacía, debe ser null): " + board.pieceAt("e4"));
+        Board turno1 = board.move(Square.at("e2"), Square.at("e4"));
+        System.out.println("--- PRUEBA DE INMUTABILIDAD Y MOVIMIENTO ---");
 
-        System.out.println("\n--- TOTAL DE PIEZAS ---");
-        System.out.println("Piezas en el tablero (deben ser 32): " + board.pieces().size());
+        System.out.println("TABLERO ORIGINAL (Turno 0):");
+        System.out.println("  Pieza en e2 (Debería seguir el WhitePawn): " + board.pieceAt("e2"));
+        System.out.println("  Pieza en e4 (Debería seguir null): " + board.pieceAt("e4"));
 
-        System.out.println("\n--- ESTADO DEL TABLERO ---");
-        System.out.println(board);
+        System.out.println("\nNUEVO TABLERO (Turno 1):");
+        System.out.println("  Pieza en e2 (Debería ser null, ya no está): " + turno1.pieceAt("e2"));
+        System.out.println("  Pieza en e4 (¡Aquí está el WhitePawn!): " + turno1.pieceAt("e4"));
+
+        System.out.println("\n--- COMPROBACIÓN DE INTEGRIDAD ---");
+        System.out.println("Total de piezas en el Turno 1 (Deben ser 32): " + turno1.pieces().size());
     }
 }
