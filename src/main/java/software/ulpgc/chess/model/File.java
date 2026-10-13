@@ -1,5 +1,7 @@
 package software.ulpgc.chess.model;
 
+import java.util.Arrays;
+
 public enum File {
     A('a'),B('b'),C('c'), D('d'),E('e'),F('f'),G('g'),H('h');
     private  final char symbol;
@@ -10,11 +12,9 @@ public enum File {
         return this.symbol;
     }
     public static File getFile(char symbol) {
-        for (File f : File.values()) {
-            if (f.symbol == symbol) {
-                return f;
-            }
-        }
-        return null;
+        return Arrays.stream(File.values())
+                .filter(f -> f.symbol == symbol)
+                .findFirst()
+                .orElse(null);
     }
 }

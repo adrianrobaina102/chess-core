@@ -1,4 +1,11 @@
 package software.ulpgc.chess.adapters;
 
-public class FenBoardDeserializer {
+import software.ulpgc.chess.model.Board;
+import software.ulpgc.chess.ports.BoardDeserializer;
+
+public class FenBoardDeserializer implements BoardDeserializer {
+    @Override
+    public Board deserialize(String value) {
+        return null;
+    }
 }
