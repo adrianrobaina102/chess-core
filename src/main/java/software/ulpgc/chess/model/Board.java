@@ -1,9 +1,9 @@
-package software.ulpgc.chess;
+package software.ulpgc.chess.model;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
-import static software.ulpgc.chess.Square.*;
-import static software.ulpgc.chess.Piece.*;
+import static software.ulpgc.chess.model.Square.*;
+import static software.ulpgc.chess.model.Piece.*;
 public final class Board {
     private final Map<Square, Piece> pieces;
     public Board(Map<Square, Piece> pieces) {
