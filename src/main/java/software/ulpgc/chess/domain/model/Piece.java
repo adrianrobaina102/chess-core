@@ -1,25 +1,39 @@
 package software.ulpgc.chess.domain.model;
 
+import java.util.Arrays;
+
 import static software.ulpgc.chess.domain.model.Color.Black;
 import static software.ulpgc.chess.domain.model.Color.White;
 
 public enum Piece {
-    WhitePawn,
-    WhiteRook,
-    WhiteQueen,
-    WhiteKnight,
-    WhiteKing,
-    WhiteBishop,
-    BlackPawn,
-    BlackRook,
-    BlackQueen,
-    BlackKnight,
-    BlackBishop,
-    BlackKing;
+    WhitePawn('P'),
+    WhiteRook('R'),
+    WhiteKnight('N'),
+    WhiteBishop('B'),
+    WhiteQueen('Q'),
+    WhiteKing('K'),
+
+    BlackPawn('p'),
+    BlackRook('r'),
+    BlackKnight('n'),
+    BlackBishop('b'),
+    BlackQueen('q'),
+    BlackKing('k');
+    private final char symbol;
+    Piece(char symbol) {
+        this.symbol = symbol;
+    }
 
     Color color()
     {
         return isWhite() ? White : Black;
+    }
+    public static Piece getPiece(char symbol)
+    {
+        return Arrays.stream(Piece.values())
+                .filter(p -> p.symbol == symbol)
+                .findFirst()
+                .orElse(null);
     }
     boolean isPawn()
     {

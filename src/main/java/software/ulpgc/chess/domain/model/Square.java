@@ -33,7 +33,7 @@ public record Square (File file, Rank rank) {
     }
 
     public static Square of(int i, int j) {
-        return new Square(File.values()[i], Rank.values()[j]);
+        return new Square(File.values()[i-1], Rank.values()[j-1]);
     }
 
     private  static class ParseException extends RuntimeException {

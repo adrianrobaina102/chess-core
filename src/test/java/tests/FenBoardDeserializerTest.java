@@ -26,7 +26,6 @@ public class FenBoardDeserializerTest {
         Board actualBoard = deserializer.deserialize(fenInitial);
 
         assertThat(actualBoard).isNotNull();
-        // Mejora: Comparamos que las piezas deserializadas coincidan exactamente con las del tablero inicial
         assertThat(actualBoard.pieces()).isEqualTo(expectedBoard.pieces());
     }
 
@@ -62,5 +61,31 @@ public class FenBoardDeserializerTest {
                 .hasSize(2) // Mejora: Aseguramos que no se cuele ninguna pieza extra por error
                 .containsEntry(Square.at("e1"), Piece.WhiteKing)
                 .containsEntry(Square.at("e8"), Piece.BlackKing);
+    }
+    @Test
+    @DisplayName("Debe deserializar correctamente una posición compleja con múltiples saltos numéricos")
+    void shouldDeserializeComplexPosition() {
+        // Esta posición se conoce como "Kiwipete" y tiene letras y números muy intercalados
+        String fenComplex = "r3k2r/p1ppqpb1/bn2pnp1/3PN3/1p2P3/2N2Q1p/PPPBBPPP/R3K2R w KQkq - 0 1";
+        Board actualBoard = deserializer.deserialize(fenComplex);
+
+        assertThat(actualBoard).isNotNull();
+        assertThat(actualBoard.pieces())
+                .containsEntry(Square.at("f3"), Piece.WhiteQueen)
+                .containsEntry(Square.at("b6"), Piece.BlackKnight)
+                .containsEntry(Square.at("h8"), Piece.BlackRook);
+    }
+
+    @Test
+    @DisplayName("Debe colocar piezas correctamente en los bordes extremos del tablero (a8 y h1)")
+    void shouldDeserializeEdgesCorrectly() {
+        // Solo dos reyes ubicados en las esquinas opuestas del tablero
+        String fenEdges = "k7/8/8/8/8/8/8/7K w - - 0 1";
+        Board actualBoard = deserializer.deserialize(fenEdges);
+
+        assertThat(actualBoard.pieces())
+                .hasSize(2)
+                .containsEntry(Square.at("a8"), Piece.BlackKing)
+                .containsEntry(Square.at("h1"), Piece.WhiteKing);
     }
 }

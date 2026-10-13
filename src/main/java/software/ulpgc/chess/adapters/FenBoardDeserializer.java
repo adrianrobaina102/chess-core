@@ -1,8 +1,6 @@
 package software.ulpgc.chess.adapters;
 
-import software.ulpgc.chess.domain.model.Board;
-import software.ulpgc.chess.domain.model.Piece;
-import software.ulpgc.chess.domain.model.Square;
+import software.ulpgc.chess.domain.model.*;
 import software.ulpgc.chess.ports.BoardDeserializer;
 
 import java.util.HashMap;
@@ -10,7 +8,9 @@ import java.util.Map;
 
 public class FenBoardDeserializer implements BoardDeserializer {
     @Override
-    public Board deserialize(String value) {return deserialize(value.split("/"));}
+    public Board deserialize(String fen) {
+        return deserialize(getValue(fen, 0).split("/"));
+    }
     private Board deserialize(String[] values) { return new Board(piecesIn(values)); }
 
     private Map<Square, Piece> piecesIn(String[] values) {
@@ -23,9 +23,23 @@ public class FenBoardDeserializer implements BoardDeserializer {
 
     private Map<Square, Piece> piecesIn(int j, char[] rank) {
         int i = 1;
+        Map<Square, Piece> map = new HashMap<>();
         for (char order : rank) {
-            Square square = Square.of(i, j);
+            if(Character.isLetter(order))
+            {
+                Square square = Square.of(i, j);
+                map.put(square, Piece.getPiece(order));
+                i++;
+            }
+            else
+            {
+                i += Character.getNumericValue(order);
+            }
+
         }
-        return Map.of();
+        return map;
+    }
+    private String getValue(String fen, int index){
+        return fen.split(" ")[index];
     }
 }
