@@ -5,7 +5,7 @@ import software.ulpgc.chess.ports.StateDeserializer;
 
 import java.util.Arrays;
 
-public class FentStateDeserializer implements StateDeserializer {
+public class FenStateDeserializer implements StateDeserializer {
 
     @Override
     public State deserialize(String value) {
