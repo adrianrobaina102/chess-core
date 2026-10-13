@@ -59,15 +59,15 @@ public final class Board {
         newMap.put(to, newMap.remove(from));
         return new Board(newMap);
     }
-    Piece pieceAt(File file, Rank rank) {
+    public Piece pieceAt(File file, Rank rank) {
         return pieceAt(new Square(file, rank));
     }
 
-    Piece pieceAt(String square) {
+    public Piece pieceAt(String square) {
         return pieceAt(at(square));
     }
 
-    private Piece pieceAt(Square square) {
+    Piece pieceAt(Square square) {
         return pieces.get(square);
     }
 

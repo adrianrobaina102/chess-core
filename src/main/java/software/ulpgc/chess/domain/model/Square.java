@@ -31,6 +31,11 @@ public record Square (File file, Rank rank) {
             throw new ParseException("Coordenada fuera del tablero: " + square);
         }
     }
+
+    public static Square of(int i, int j) {
+        return new Square(File.values()[i], Rank.values()[j]);
+    }
+
     private  static class ParseException extends RuntimeException {
         public ParseException (String message){
             super(message);

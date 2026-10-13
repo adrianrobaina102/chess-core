@@ -1,4 +1,7 @@
-package software.ulpgc.chess.domain.model;
+package software.ulpgc.chess;
+
+import software.ulpgc.chess.domain.model.Board;
+import software.ulpgc.chess.domain.model.Square;
 
 // == compara direccion .equals Compara el objeto
 public class Main {
