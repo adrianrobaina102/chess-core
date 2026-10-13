@@ -9,7 +9,7 @@ import java.util.Map;
 public class FenBoardDeserializer implements BoardDeserializer {
     @Override
     public Board deserialize(String fen) {
-        return deserialize(getValue(fen, 0).split("/"));
+        return deserialize(getFenPart(fen).split("/"));
     }
     private Board deserialize(String[] values) { return new Board(piecesIn(values)); }
 
@@ -25,21 +25,16 @@ public class FenBoardDeserializer implements BoardDeserializer {
         int i = 1;
         Map<Square, Piece> map = new HashMap<>();
         for (char order : rank) {
-            if(Character.isLetter(order))
-            {
-                Square square = Square.of(i, j);
-                map.put(square, Piece.getPiece(order));
-                i++;
-            }
-            else
-            {
+            if (Character.isLetter(order)) {
+                map.put(Square.of(i++, j), Piece.getPiece(order));
+            } else {
                 i += Character.getNumericValue(order);
             }
 
         }
         return map;
     }
-    private String getValue(String fen, int index){
-        return fen.split(" ")[index];
+    private String getFenPart(String fen){
+        return fen.split(" ")[0];
     }
 }
