@@ -1,4 +1,4 @@
-package software.ulpgc.chess.model;
+package software.ulpgc.chess.domain.model;
 
 // == compara direccion .equals Compara el objeto
 public class Main {
