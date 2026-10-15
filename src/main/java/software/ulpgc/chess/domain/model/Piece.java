@@ -23,7 +23,7 @@ public enum Piece {
     Piece(char symbol) {
         this.symbol = symbol;
     }
-
+    public char getSymbol() {return this.symbol;}
     Color color()
     {
         return isWhite() ? White : Black;
