@@ -59,6 +59,9 @@ public final class Board {
         newMap.put(to, newMap.remove(from));
         return new Board(newMap);
     }
+    public Board move(Move move){
+        return move(move.from(), move.to());
+    }
     public Piece pieceAt(File file, Rank rank) {
         return pieceAt(new Square(file, rank));
     }
