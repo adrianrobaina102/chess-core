@@ -41,4 +41,6 @@ public record Square (File file, Rank rank) {
             super(message);
         }
     }
+    @Override
+    public String toString() {return (file.toString()  + rank.symbol()).toLowerCase(); }
 }
